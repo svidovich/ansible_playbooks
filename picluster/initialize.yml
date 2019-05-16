@@ -1,0 +1,12 @@
+- hosts: cluster-nodes
+  tasks:
+  - name: Disable swap
+    shell: swapoff -a
+    become: yes
+    become_method: sudo
+  - name: Install necessary packages
+    apt: 
+      name: ['python3', 'python3-pip', 'docker', 'ebtables', 'ethtool', 'apt-transport-https', 'curl']
+      state: latest
+    become: yes
+    become_method: sudo
