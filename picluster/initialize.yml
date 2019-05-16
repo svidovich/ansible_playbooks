@@ -6,7 +6,11 @@
     become_method: sudo
   - name: Install necessary packages
     apt: 
-      name: ['python3', 'python3-pip', 'docker', 'ebtables', 'ethtool', 'apt-transport-https', 'curl']
+      name: ['python3', 'python3-pip', 'ebtables', 'ethtool', 'apt-transport-https', 'curl']
       state: latest
+    become: yes
+    become_method: sudo
+  - name: Install docker
+    shell: curl -sSL https://get.docker.com/ | sh
     become: yes
     become_method: sudo
